@@ -1,0 +1,84 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Data Display</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #979191;
+        }
+        h2{
+            background-color: lightseagreen;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .json-data {
+            white-space: pre-wrap;
+            background-color: #bdb7b7;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            color: black;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Read JSON Data</h2>
+            <div class="json-data" id="jsonDisplay">
+                <!-- JSON data will be displayed here -->
+            </div>
+        </div>
+
+        <script>
+                // Example JSON data
+            $(document).ready(function () {
+                $.ajax({
+                    url:"https://jsonplaceholder.typicode.com/posts/8", // ye singale data ke liye hai
+                    type:"GET",
+                    success:function(data){
+                        console.log(data)
+                        $("#jsonDisplay").text(JSON.stringify(data, null, 2)); //ye jab singal line ke liye hai 
+                        console.log(value.id + " " + value.title);
+                        $("#jsonDisplay").append(value.id + " " + value.title + "<br>");
+                    }
+                });
+            });
+            // 100 Display JSON data 
+                $(document).ready(function () {
+                $.ajax({
+                    
+                    url: "https://jsonplaceholder.typicode.com/posts",
+                    type:"GET",
+                    success:function(data){
+                        console.log(data)
+                        //ab ager bhout jada deta hai tho loop chalan ho ga
+                        $.each(data, function(key,value){
+                        console.log(value.id + " " + value.title);
+                        $("#jsonDisplay").append(value.id + " " + value.title + "<br>");
+
+                        });
+                    }
+                });
+            });
+            
+        </script>
+    </body>
+    </html>
